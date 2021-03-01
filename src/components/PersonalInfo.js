@@ -1,7 +1,5 @@
-// import uniqid from "uniqid";
 import React, { Component } from "react";
-import Overview from './Overview'
-
+import PersonalInfoOverview from "./PersonalInfoOverview";
 class PersonalInfo extends Component {
 	constructor() {
 		super();
@@ -16,9 +14,9 @@ class PersonalInfo extends Component {
 		};
 	}
 
-    handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-      }
+	handleChange = (e) => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
 
 	onSubmitPersonalInfo = (e) => {
 		e.preventDefault();
@@ -30,8 +28,8 @@ class PersonalInfo extends Component {
 			phoneNumber,
 			emailAddress,
 		} = this.state;
-		
-        this.setState({
+
+		this.setState({
 			allPersonalInfo: this.state.allPersonalInfo.concat(
 				firstName,
 				lastName,
@@ -50,24 +48,27 @@ class PersonalInfo extends Component {
 	};
 
 	render() {
-        const {
+		const {
 			firstName,
 			lastName,
 			currentRole,
 			address,
 			phoneNumber,
 			emailAddress,
-            allPersonalInfo,
+			allPersonalInfo,
 		} = this.state;
 
 		return (
 			<div>
+				<div>
+					<PersonalInfoOverview personalInfo={allPersonalInfo} />
+				</div>
 				<form onSubmit={this.onSubmitPersonalInfo}>
 					<div>
 						<label htmlFor="firstNameInput">First Name</label>
 						<input
 							onChange={this.handleChange}
-                            name='firstName'
+							name="firstName"
 							value={firstName}
 							type="text"
 							id="firstNameInput"
@@ -77,57 +78,54 @@ class PersonalInfo extends Component {
 						<label htmlFor="lastNameInput">Last Name</label>
 						<input
 							onChange={this.handleChange}
-                            name='lastName'
+							name="lastName"
 							value={lastName}
 							type="text"
 							id="lastNameInput"
 						/>
 					</div>
-                    <div>
+					<div>
 						<label htmlFor="currentRoleInput">Current Role</label>
 						<input
 							onChange={this.handleChange}
-                            name='currentRole'
+							name="currentRole"
 							value={currentRole}
 							type="text"
 							id="currentRoleInput"
 						/>
 					</div>
-                    <div>
+					<div>
 						<label htmlFor="addressInput">Address</label>
 						<input
 							onChange={this.handleChange}
-                            name='address'
+							name="address"
 							value={address}
 							type="text"
 							id="addressInput"
 						/>
 					</div>
-                    <div>
+					<div>
 						<label htmlFor="phoneNumberInput">Phone Nember</label>
 						<input
 							onChange={this.handleChange}
-                            name='phoneNumber'
+							name="phoneNumber"
 							value={phoneNumber}
 							type="number"
 							id="phoneNumberInput"
 						/>
 					</div>
-                    <div>
+					<div>
 						<label htmlFor="emailAddressInput">email Address</label>
 						<input
 							onChange={this.handleChange}
-                            name='emailAddress'
+							name="emailAddress"
 							value={emailAddress}
 							type="email"
 							id="emailAddressInput"
 						/>
 					</div>
-                    <button type='submit'>+Add</button>
+					<button type="submit">+Add</button>
 				</form>
-				<div>
-                    <Overview tasks={allPersonalInfo}/>
-                </div>
 			</div>
 		);
 	}

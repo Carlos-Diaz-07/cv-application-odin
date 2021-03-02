@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import PersonalInfoOverview from "./PersonalInfoOverview";
+
+let personalInfoPreview = [];
+
 class PersonalInfo extends Component {
 	constructor() {
 		super();
@@ -57,6 +60,8 @@ class PersonalInfo extends Component {
 			emailAddress,
 			allPersonalInfo,
 		} = this.state;
+
+		personalInfoPreview = allPersonalInfo;
 
 		return (
 			<div>
@@ -131,4 +136,4 @@ class PersonalInfo extends Component {
 	}
 }
 
-export default PersonalInfo;
+export { PersonalInfo, personalInfoPreview};

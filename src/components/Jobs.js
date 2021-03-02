@@ -1,6 +1,7 @@
 import JobsOverview from "./JobsOverview";
 import React, { Component } from "react";
 
+let jobsInfoPreview = [];
 class Jobs extends Component {
 	constructor() {
 		super();
@@ -58,6 +59,8 @@ class Jobs extends Component {
 			description,
 			allJobsInfo,
 		} = this.state;
+
+		jobsInfoPreview = allJobsInfo;
 
 		return (
 			<div>
@@ -134,4 +137,4 @@ class Jobs extends Component {
 	}
 }
 
-export default Jobs;
+export { Jobs, jobsInfoPreview };

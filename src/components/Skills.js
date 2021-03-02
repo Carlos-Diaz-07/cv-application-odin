@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import SkillsOverview from "./SkillsOverview";
 
-export default class Skills extends Component {
+let skillsInfoPreview = [];
+class Skills extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -24,7 +25,9 @@ export default class Skills extends Component {
 		});
 	};
 	render() {
-        const { skills, skill } = this.state
+		const { skills, skill } = this.state;
+
+		skillsInfoPreview = skills;
 
 		return (
 			<div>
@@ -38,10 +41,12 @@ export default class Skills extends Component {
 					/>
 					<button type="submit">+Add Skill</button>
 				</form>
-                <div>
-                    <SkillsOverview skills={skills} />
-                </div>
+				<div>
+					<SkillsOverview skills={skills} />
+				</div>
 			</div>
 		);
 	}
 }
+
+export { Skills, skillsInfoPreview };

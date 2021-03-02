@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import EducationOverview from './EducationOverview'
+import EducationOverview from "./EducationOverview";
+
+let educationInfoPreview = [];
 
 class Education extends Component {
 	constructor() {
@@ -59,6 +61,8 @@ class Education extends Component {
 			allEducationInfo,
 		} = this.state;
 
+		educationInfoPreview = allEducationInfo;
+
 		return (
 			<div>
 				<div>
@@ -116,7 +120,9 @@ class Education extends Component {
 						/>
 					</div>
 					<div>
-						<label htmlFor="descriptionInput">Subject and Further Description</label>
+						<label htmlFor="descriptionInput">
+							Subject and Further Description
+						</label>
 						<textarea
 							onChange={this.handleChange}
 							name="description"
@@ -134,4 +140,4 @@ class Education extends Component {
 	}
 }
 
-export default Education;
+export { Education, educationInfoPreview };

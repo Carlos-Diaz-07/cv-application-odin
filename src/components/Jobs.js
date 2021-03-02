@@ -1,10 +1,9 @@
 import JobsOverview from "./JobsOverview";
 import React, { Component } from "react";
 
-let jobsInfoPreview = [];
 class Jobs extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			companyName: "",
 			city: "",
@@ -60,13 +59,9 @@ class Jobs extends Component {
 			allJobsInfo,
 		} = this.state;
 
-		jobsInfoPreview = allJobsInfo;
-
-		return (
-			<div>
-				<div>
-					<JobsOverview allJobs={allJobsInfo} />
-				</div>
+		let form;
+		if (!this.props.previewActive) {
+			form = (
 				<form onSubmit={this.onSubmitJob}>
 					<div>
 						<label htmlFor="companyNameInput">Company Name</label>
@@ -132,9 +127,16 @@ class Jobs extends Component {
 					</div>
 					<button type="submit">+Add</button>
 				</form>
+			);
+		}
+
+		return (
+			<div>
+				<JobsOverview allJobs={allJobsInfo} />
+				{form}
 			</div>
 		);
 	}
 }
 
-export { Jobs, jobsInfoPreview };
+export default Jobs;

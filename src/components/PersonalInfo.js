@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import PersonalInfoOverview from "./PersonalInfoOverview";
 
-let personalInfoPreview = [];
-
 class PersonalInfo extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			firstName: "",
 			lastName: "",
@@ -61,13 +59,9 @@ class PersonalInfo extends Component {
 			allPersonalInfo,
 		} = this.state;
 
-		personalInfoPreview = allPersonalInfo;
-
-		return (
-			<div>
-				<div>
-					<PersonalInfoOverview personalInfo={allPersonalInfo} />
-				</div>
+		let form;
+		if (!this.props.previewActive) {
+			form = (
 				<form onSubmit={this.onSubmitPersonalInfo}>
 					<div>
 						<label htmlFor="firstNameInput">First Name</label>
@@ -131,9 +125,16 @@ class PersonalInfo extends Component {
 					</div>
 					<button type="submit">+Add</button>
 				</form>
+			);
+		}
+
+		return (
+			<div>
+				<PersonalInfoOverview personalInfo={allPersonalInfo} />
+				{form}
 			</div>
 		);
 	}
 }
 
-export { PersonalInfo, personalInfoPreview};
+export default PersonalInfo;

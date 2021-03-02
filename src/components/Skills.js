@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import SkillsOverview from "./SkillsOverview";
 
-let skillsInfoPreview = [];
 class Skills extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			skill: "",
 			skills: [],
@@ -27,10 +26,9 @@ class Skills extends Component {
 	render() {
 		const { skills, skill } = this.state;
 
-		skillsInfoPreview = skills;
-
-		return (
-			<div>
+		let form;
+		if (!this.props.previewActive) {
+			form = (
 				<form onSubmit={this.onSubmitSkill}>
 					<label htmlFor="skillInput">Enter Skill</label>
 					<input
@@ -41,12 +39,16 @@ class Skills extends Component {
 					/>
 					<button type="submit">+Add Skill</button>
 				</form>
-				<div>
-					<SkillsOverview skills={skills} />
-				</div>
+			);
+		}
+
+		return (
+			<div>
+				<SkillsOverview skills={skills} />
+				{form}
 			</div>
 		);
 	}
 }
 
-export { Skills, skillsInfoPreview };
+export default Skills;

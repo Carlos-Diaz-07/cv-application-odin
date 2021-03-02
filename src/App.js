@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Jobs } from "./components/Jobs";
-import { PersonalInfo } from "./components/PersonalInfo";
-import { Education } from "./components/Education";
-import { Skills } from "./components/Skills";
-import { Preview } from "./components/Preview";
+import Jobs from "./components/Jobs";
+import PersonalInfo from "./components/PersonalInfo";
+import Education from "./components/Education";
+import Skills from "./components/Skills";
+
 export class App extends Component {
 	constructor() {
 		super();
@@ -11,12 +11,6 @@ export class App extends Component {
 			previewActive: false,
 		};
 	}
-
-	// handleChange = (e) => {
-	// 	this.setState({
-	// 		task: e.target.value,
-	// 	});
-	// };
 
 	onSubmitPreview = (e) => {
 		e.preventDefault();
@@ -29,32 +23,24 @@ export class App extends Component {
 	};
 
 	render() {
+		const { previewActive } = this.state;
+		let btn;
 		if (!this.state.previewActive) {
-			return (
-				<div>
-					<PersonalInfo />
-
-					<Jobs />
-
-					<Education />
-
-					<Skills />
-
-					<div>
-						<button onClick={this.onSubmitPreview}>Preview</button>
-					</div>
-				</div>
-			);
+			btn = <button onClick={this.onSubmitPreview}>Preview</button>;
 		} else {
-			return (
-				<div>
-					<Preview />
-					<div>
-						<button onClick={this.onSubmitPreview}>Preview</button>
-					</div>
-				</div>
-			);
+			btn = <button onClick={this.onSubmitPreview}>Edit</button>;
 		}
+
+		return (
+			<div>
+				<PersonalInfo previewActive={previewActive} />
+				<Jobs previewActive={previewActive} />
+				<Education previewActive={previewActive} />
+				<Skills previewActive={previewActive} />
+				{btn}
+			</div>
+		);
+		// }
 	}
 }
 

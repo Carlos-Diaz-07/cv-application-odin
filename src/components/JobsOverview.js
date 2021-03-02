@@ -1,5 +1,5 @@
 import React from "react";
-import uniqid from 'uniqid';
+import uniqid from "uniqid";
 
 function JobsOverview(props) {
 	const { allJobs } = props;

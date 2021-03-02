@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import EducationOverview from "./EducationOverview";
 
-let educationInfoPreview = [];
-
 class Education extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			schoolName: "",
 			city: "",
@@ -61,13 +59,9 @@ class Education extends Component {
 			allEducationInfo,
 		} = this.state;
 
-		educationInfoPreview = allEducationInfo;
-
-		return (
-			<div>
-				<div>
-					<EducationOverview educationInfo={allEducationInfo} />
-				</div>
+		let form;
+		if (!this.props.previewActive) {
+			form = (
 				<form onSubmit={this.onSubmitJob}>
 					<div>
 						<label htmlFor="schoolNameInput">School or University Name</label>
@@ -135,9 +129,16 @@ class Education extends Component {
 					</div>
 					<button type="submit">+Add</button>
 				</form>
+			);
+		}
+
+		return (
+			<div>
+				<EducationOverview educationInfo={allEducationInfo} />
+				{form}
 			</div>
 		);
 	}
 }
 
-export { Education, educationInfoPreview };
+export default Education;

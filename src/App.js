@@ -12,7 +12,7 @@ export class App extends Component {
 		};
 	}
 
-	onSubmitPreview = (e) => {
+	onClickPreview = (e) => {
 		e.preventDefault();
 
 		if (this.state.previewActive) {
@@ -26,9 +26,9 @@ export class App extends Component {
 		const { previewActive } = this.state;
 		let btn;
 		if (!this.state.previewActive) {
-			btn = <button onClick={this.onSubmitPreview}>Preview</button>;
+			btn = <button onClick={this.onClickPreview}>Preview</button>;
 		} else {
-			btn = <button onClick={this.onSubmitPreview}>Edit</button>;
+			btn = <button onClick={this.onClickPreview}>Edit</button>;
 		}
 
 		return (
